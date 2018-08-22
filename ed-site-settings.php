@@ -75,6 +75,34 @@ class CustomSiteSettingsPage {
             array( $this, 'text_field_validation' )
         );
 
+
+        // @TODO make these fields enabled if YOAST is not enabled.
+//
+//        add_settings_section(
+//            'custom_theme_social_media_settings_section', // ID
+//            'Social Media Links', // Title
+//            array( $this, 'print_sm_section_info' ), // Callback
+//            'custom-theme-settings-admin' // Page
+//        );
+//
+//        $sm_links = array(
+//            'facebook',
+//            'twitter',
+//            'google_plus',
+//            'linkedin',
+//        );
+//
+//        foreach ( $sm_links as $link ) {
+//            add_settings_field(
+//                $link,
+//                str_replace( '_', ' ', $link ),
+//                array( $this, 'sm_link_callback' ),
+//                'custom-theme-settings-admin',
+//                'custom_theme_social_media_settings_section',
+//                $link
+//            );
+//        }
+
         register_setting(
             'custom_theme_settings_option_group',
             'custom_theme_contact_info', // Option Name
