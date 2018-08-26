@@ -32,10 +32,10 @@ class CustomSiteSettingsPage {
     public function add_plugin_page() {
         // This page will be under "Settings"
         add_options_page(
-            'Custom Theme Settings',
-            'Custom Theme Settings',
+            'Site Settings',
+            'Site Settings',
             'manage_options',
-            'custom-theme-settings-admin',
+            'ed-site-settings-admin',
             array( $this, 'create_admin_page' )
         );
     }
@@ -45,18 +45,15 @@ class CustomSiteSettingsPage {
      */
     public function create_admin_page() {
         // Set class property
-        $this->social_options = get_option( 'custom_theme_social_media' );
-        $this->contact_options = get_option( 'custom_theme_contact_info' );
-
-        //print_r($this->options);
+	    $this->options = get_option( 'ed_site_settings' );
         ?>
         <div class="wrap">
-            <h1>Custom Theme Settings</h1>
+            <h1>Site Settings</h1>
             <form method="post" action="options.php">
                 <?php
                 // This prints out all hidden setting fields
-                settings_fields( 'custom_theme_settings_option_group' );
-                do_settings_sections( 'custom-theme-settings-admin' );
+                settings_fields( 'ed_site_settings_option_group' );
+                do_settings_sections( 'ed-site-settings-admin' );
                 submit_button();
                 ?>
             </form>
@@ -67,61 +64,27 @@ class CustomSiteSettingsPage {
     /**
      * Register and add settings
      */
-    public function page_init()
-    {
-        register_setting(
-            'custom_theme_settings_option_group',
-            'custom_theme_social_media', // Option Name
-            array( $this, 'text_field_validation' )
-        );
-
-
-        // @TODO make these fields enabled if YOAST is not enabled.
-//
-//        add_settings_section(
-//            'custom_theme_social_media_settings_section', // ID
-//            'Social Media Links', // Title
-//            array( $this, 'print_sm_section_info' ), // Callback
-//            'custom-theme-settings-admin' // Page
-//        );
-//
-//        $sm_links = array(
-//            'facebook',
-//            'twitter',
-//            'google_plus',
-//            'linkedin',
-//        );
-//
-//        foreach ( $sm_links as $link ) {
-//            add_settings_field(
-//                $link,
-//                str_replace( '_', ' ', $link ),
-//                array( $this, 'sm_link_callback' ),
-//                'custom-theme-settings-admin',
-//                'custom_theme_social_media_settings_section',
-//                $link
-//            );
-//        }
+    public function page_init() {
 
         register_setting(
-            'custom_theme_settings_option_group',
-            'custom_theme_contact_info', // Option Name
+            'ed_site_settings_option_group',
+            'ed_site_settings',
             array( $this, 'text_field_validation' )
         );
 
         add_settings_section(
-            'custom_theme_contact_settings_section', // ID
+            'contact_settings_section',
             'Contact Info', // Title
             array( $this, 'print_contact_section_info' ), // Callback
-            'custom-theme-settings-admin' // Page
+            'ed-site-settings-admin' // Page
         );
 
         add_settings_field(
             'primary-phone',
             'Primary Phone',
             array( $this, 'text_field_callback' ),
-            'custom-theme-settings-admin',
-            'custom_theme_contact_settings_section',
+            'ed-site-settings-admin',
+            'contact_settings_section',
             'primary_phone'
         );
 
@@ -129,8 +92,8 @@ class CustomSiteSettingsPage {
             'primary-email',
             'Primary Email',
             array( $this, 'text_field_callback' ),
-            'custom-theme-settings-admin',
-            'custom_theme_contact_settings_section',
+            'ed-site-settings-admin',
+            'contact_settings_section',
             'primary_email'
         );
 
@@ -138,8 +101,8 @@ class CustomSiteSettingsPage {
             'fax',
             'Fax Number',
             array( $this, 'text_field_callback' ),
-            'custom-theme-settings-admin',
-            'custom_theme_contact_settings_section',
+            'ed-site-settings-admin',
+            'contact_settings_section',
             'fax_number'
         );
 
@@ -147,24 +110,24 @@ class CustomSiteSettingsPage {
             'business-address',
             'Business Address',
             array( $this, 'textarea_field_callback' ),
-            'custom-theme-settings-admin',
-            'custom_theme_contact_settings_section',
+            'ed-site-settings-admin',
+            'contact_settings_section',
             'business_address'
         );
 
         add_settings_section(
-            'custom_theme_vendor_settings_section', // ID
+            'vendor_settings_section', // ID
             'Vendor Settings', // Title
             array( $this, 'print_vendor_section_info' ), // Callback
-            'custom-theme-settings-admin' // Page
+            'ed-site-settings-admin' // Page
         );
 
         add_settings_field(
             'google-analytics-ua',
             'Google Analytics UA',
             array( $this, 'text_field_callback' ),
-            'custom-theme-settings-admin',
-            'custom_theme_vendor_settings_section',
+            'ed-site-settings-admin',
+            'vendor_settings_section',
             'google_analytics_ua'
         );
     }
@@ -186,9 +149,6 @@ class CustomSiteSettingsPage {
     /**
      * Print the Section text
      */
-    public function print_sm_section_info() {
-        print 'Enter URLs for all your social media accounts below:';
-    }
 
     public function print_contact_section_info() {
         print 'Add your contact information here.';
@@ -200,29 +160,17 @@ class CustomSiteSettingsPage {
 
 
     public function text_field_callback( $link ) {
-        $value = isset( $this->contact_options[$link] ) ? esc_attr( $this->contact_options[$link] ) : '';
+        $value = isset( $this->options[$link] ) ? esc_attr( $this->options[$link] ) : '';
         printf(
-            '<input type="text" id="%1$s" name="custom_theme_contact_info[%1$s]" value="%2$s" class="regular-text" />',
+            '<input type="text" id="%1$s" name="ed_site_settings[%1$s]" value="%2$s" class="regular-text" />',
             $link,
             $value
         );
     }
 
     public function textarea_field_callback( $link ) {
-        $value = isset( $this->contact_options[$link] ) ? esc_attr( $this->contact_options[$link] ) : '';
-        echo "<textarea id='plugin_textarea_string' name='custom_theme_contact_info[{$link}]' rows='7' cols='50' type='textarea'>{$value}</textarea>";
-    }
-
-    /**
-     * Get the settings option array and print one of its values
-     */
-    public function sm_link_callback( $link ) {
-        $value = isset( $this->social_options[$link] ) ? esc_attr( $this->social_options[$link] ) : '';
-        printf(
-            '<input type="text" id="%1$s" name="custom_theme_social_media[%1$s]" value="%2$s" class="regular-text" />',
-            $link,
-            $value
-        );
+        $value = isset( $this->options[$link] ) ? esc_attr( $this->options[$link] ) : '';
+        echo "<textarea id='plugin_textarea_string' name='ed_site_settings[{$link}]' rows='7' cols='50' type='textarea'>{$value}</textarea>";
     }
 
 }
