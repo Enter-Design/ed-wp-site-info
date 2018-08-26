@@ -80,39 +80,39 @@ class CustomSiteSettingsPage {
         );
 
         add_settings_field(
-            'primary-phone',
-            'Primary Phone',
+            'phone',
+            'Phone',
             array( $this, 'text_field_callback' ),
             'ed-site-settings-admin',
             'contact_settings_section',
-            'primary_phone'
+            'phone'
         );
 
         add_settings_field(
-            'primary-email',
-            'Primary Email',
+            'email',
+            'Email',
             array( $this, 'text_field_callback' ),
             'ed-site-settings-admin',
             'contact_settings_section',
-            'primary_email'
+            'email'
         );
 
         add_settings_field(
             'fax',
-            'Fax Number',
+            'Fax',
             array( $this, 'text_field_callback' ),
             'ed-site-settings-admin',
             'contact_settings_section',
-            'fax_number'
+            'fax'
         );
 
         add_settings_field(
             'business-address',
-            'Business Address',
+            'Address',
             array( $this, 'textarea_field_callback' ),
             'ed-site-settings-admin',
             'contact_settings_section',
-            'business_address'
+            'address'
         );
 
         add_settings_section(
