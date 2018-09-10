@@ -67,10 +67,7 @@ if ( file_exists( ED_SITE_SETTINGS_PATH . 'includes/vendor-settings.php' ) )
 	require_once ED_SITE_SETTINGS_PATH . 'includes/vendor-settings.php';
 
 
-
 if( is_admin() )
 	$custom_site_settings_page = new CustomSiteSettingsPage();
     $contact_settings = new ContactSettings();
     $vendor_settings = new VendorSettings();
-
-

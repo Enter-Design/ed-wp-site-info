@@ -39,11 +39,5 @@ class VendorSettings {
 			$value
 		);
 	}
-
-	function textarea_field_callback( $link ) {
-		$value = isset( $this->options[$link] ) ? esc_attr( $this->options[$link] ) : '';
-		echo "<textarea id='plugin_textarea_string' name='ed_site_settings[{$link}]' rows='7' cols='50' type='textarea'>{$value}</textarea>";
-	}
-
 }
 
