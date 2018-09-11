@@ -1,7 +1,6 @@
 <?php
 
-
-class CustomSiteSettingsPage {
+class EDSiteSettingsPage {
 	/**
 	 * Holds the values to be used in the fields callbacks
 	 */
@@ -68,6 +67,6 @@ if ( file_exists( ED_SITE_SETTINGS_PATH . 'includes/vendor-settings.php' ) )
 
 
 if( is_admin() )
-	$custom_site_settings_page = new CustomSiteSettingsPage();
+	$custom_site_settings_page = new EDSiteSettingsPage();
     $contact_settings = new ContactSettings();
     $vendor_settings = new VendorSettings();
