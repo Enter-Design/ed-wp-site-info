@@ -20,6 +20,10 @@ if ( ! defined( 'ED_SITE_SETTINGS_PATH' ) ) {
 	define( 'ED_SITE_SETTINGS_PATH', plugin_dir_path( ED_SITE_SETTINGS_FILE ) );
 }
 
+if (! defined ( 'ED_SITE_SETTINGS_ASSETS_PATH' ) ) {
+    define( 'ED_SITE_SETTINGS_ASSETS_PATH', ED_SITE_SETTINGS_PATH . 'includes/assets' );
+}
+
 // Load the ED Site Settings plugin.
 if ( file_exists( ED_SITE_SETTINGS_PATH . 'includes/site-settings.php' ) ) {
 	require_once ED_SITE_SETTINGS_PATH . 'includes/site-settings.php';

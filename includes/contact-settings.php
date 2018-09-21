@@ -6,6 +6,7 @@ class ContactSettings {
 	public function __construct() {
 		$this->options = get_option('ed_site_settings');
 		add_action( 'admin_init', array( $this, 'page_init' ) );
+		add_shortcode( 'contact_settings', array( $this, 'contact_shortcode') );
 	}
 
 	public function print_contact_section_info() {
@@ -75,5 +76,23 @@ class ContactSettings {
 	function text_field_validation() {
 		return;
 	}
+
+	function contact_shortcode( $atts ) {
+	    $settings = get_option('ed_site_settings');
+	    $svg_path =  ED_SITE_SETTINGS_ASSETS_PATH . '/svgs/';
+	    $contact_item_html = '';
+
+        foreach ( $atts as $att ) {
+            $contact_item = $settings[$att];
+            $contact_item_link = 'tel:' . $settings[$att];
+            $svg_file = file_get_contents($svg_path . $att . '.svg');
+            $contact_item_html .= <<<EOD
+        <div class="contact-item">
+            <a href="$contact_item_link">$svg_file $contact_item</a>
+        </div>
+EOD;
+        }
+	    return $contact_item_html;
+    }
 }
 
