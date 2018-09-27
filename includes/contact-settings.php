@@ -84,10 +84,16 @@ class ContactSettings {
 
         foreach ( $atts as $att ) {
             $contact_item = $settings[$att];
-            $contact_item_link = 'tel:' . $settings[$att];
+            $contact_item_link = '#';
+            if ( $att === 'phone' ) {
+               $contact_item_link = 'tel:' . $settings[$att];
+            } elseif ( $att === 'email' ) {
+               $contact_item_link = 'mailto:' . $settings[$att];
+            }
             $svg_file = file_get_contents($svg_path . $att . '.svg');
+
             $contact_item_html .= <<<EOD
-        <div class="contact-item">
+        <div class="contact-item contact-item-$att">
             <a href="$contact_item_link">$svg_file $contact_item</a>
         </div>
 EOD;
