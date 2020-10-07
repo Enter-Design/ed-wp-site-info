@@ -104,7 +104,7 @@ class VendorSettings {
 		$font_code = $this->options['google_fonts'];
 		if ( $font_code ): ?>
 			<!-- Google Fonts -->
-			<link href="https://fonts.googleapis.com/css2?family=<?php echo $font_code; ?>display=swap" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css2?family=<?php echo $font_code; ?>&display=swap" rel="stylesheet">
 			<!-- End Google Fonts-->
 		<?php endif;
 	}
