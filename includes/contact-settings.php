@@ -4,7 +4,7 @@ class ContactSettings {
 	private $options;
 
 	public function __construct() {
-		$this->options = get_option('ed_site_settings');
+		$this->options = get_option('ed_site_info');
 		add_action( 'admin_init', array( $this, 'page_init' ) );
 		add_shortcode( 'contact_settings', array( $this, 'contact_shortcode') );
 	}
@@ -62,7 +62,7 @@ class ContactSettings {
 	function text_field_callback( $link ) {
 		$value = isset( $this->options[$link] ) ? esc_attr( $this->options[$link] ) : '';
 		printf(
-			'<input type="text" id="%1$s" name="ed_site_settings[%1$s]" value="%2$s" class="regular-text" />',
+			'<input type="text" id="%1$s" name="ed_site_info[%1$s]" value="%2$s" class="regular-text" />',
 			$link,
 			$value
 		);
@@ -70,7 +70,7 @@ class ContactSettings {
 
 	function textarea_field_callback( $link ) {
 		$value = isset( $this->options[$link] ) ? esc_attr( $this->options[$link] ) : '';
-		echo "<textarea id='plugin_textarea_string' name='ed_site_settings[{$link}]' rows='7' cols='50' type='textarea'>{$value}</textarea>";
+		echo "<textarea id='plugin_textarea_string' name='ed_site_info[{$link}]' rows='7' cols='50' type='textarea'>{$value}</textarea>";
 	}
 
 	function text_field_validation() {
@@ -78,8 +78,8 @@ class ContactSettings {
 	}
 
 	function contact_shortcode( $atts ) {
-	    $settings = get_option('ed_site_settings');
-	    $svg_path =  ED_SITE_SETTINGS_ASSETS_PATH . '/svgs/';
+	    $settings = get_option('ed_site_info');
+	    $svg_path =  ED_SITE_INFO_ASSETS_PATH . '/svgs/';
 	    $contact_item_html = '';
 
         foreach ( $atts as $att ) {
