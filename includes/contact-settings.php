@@ -57,6 +57,15 @@ class ContactSettings {
 			'contact_settings_section',
 			'address'
 		);
+
+        add_settings_field(
+            'site-description',
+            'Site Description',
+            array( $this, 'textarea_field_callback' ),
+            'ed-site-settings-admin',
+            'contact_settings_section',
+            'site-description'
+        );
 	}
 
 	function text_field_callback( $link ) {

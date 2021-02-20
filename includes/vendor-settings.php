@@ -50,6 +50,15 @@ class VendorSettings {
 			'vendor_settings_section',
 			'google_fonts'
 		);
+
+        add_settings_field(
+            'adobe-fonts',
+            'Adobe Fonts',
+            array( $this, 'text_field_callback' ),
+            'ed-site-settings-admin',
+            'vendor_settings_section',
+            'adobe_fonts'
+        );
 	}
 
 	function text_field_callback( $link ) {
