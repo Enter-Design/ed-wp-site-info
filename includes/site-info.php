@@ -20,8 +20,8 @@ class EDSiteInfoPage {
 	public function add_plugin_page() {
 		// This page will be under "Settings"
 		add_options_page(
-			'Site Settings',
-			'Site Settings',
+			'Site Info',
+			'Site Info',
 			'manage_options',
 			'ed-site-settings-admin',
 			array( $this, 'create_admin_page' )
@@ -36,7 +36,7 @@ class EDSiteInfoPage {
 		$this->options = get_option( 'ed_site_info' );
 		?>
 		<div class="wrap">
-			<h1>Site Settings</h1>
+			<h1>Site Info</h1>
 			<form method="post" action="options.php">
 				<?php
 				// This prints out all hidden setting fields
