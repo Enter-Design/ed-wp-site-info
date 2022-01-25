@@ -82,10 +82,6 @@ class ContactSettings {
 		echo "<textarea id='plugin_textarea_string' name='ed_site_info[{$link}]' rows='7' cols='50' type='textarea'>{$value}</textarea>";
 	}
 
-	function text_field_validation() {
-		return;
-	}
-
 	function contact_shortcode( $atts ) {
 	    $settings = get_option('ed_site_info');
 	    $svg_path =  ED_SITE_INFO_ASSETS_PATH . '/svgs/';

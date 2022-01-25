@@ -61,12 +61,6 @@ class EDSiteInfoPage {
 if ( file_exists( ED_SITE_INFO_PATH . 'includes/contact-settings.php' ) )
 	require_once ED_SITE_INFO_PATH . 'includes/contact-settings.php';
 
-// Load the Vendor Settings
-if ( file_exists( ED_SITE_INFO_PATH . 'includes/vendor-settings.php' ) )
-	require_once ED_SITE_INFO_PATH . 'includes/vendor-settings.php';
-
-
 if( is_admin() )
 	$custom_site_info_page = new EDSiteInfoPage();
     $contact_settings = new ContactSettings();
-    $vendor_settings = new VendorSettings();

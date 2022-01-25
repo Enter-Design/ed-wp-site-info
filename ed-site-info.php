@@ -5,8 +5,8 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 Plugin Name:  ED - Site Info
 Plugin URI:   https://developer.wordpress.org/plugins/the-basics/
 Description:  A simple plugin that commonly used site and vendor information for wordpress installations.
-Version:      08.21.2018
-Author:       rossmerriam.com
+Version:      01.25.2022
+Author:       Ross Merriam
 Author URI:   https://rossmerriam.com/
 License:      GPL2
 License URI:  https://www.gnu.org/licenses/gpl-2.0.html
